@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
+import 'package:weatherapp/client/client.dart';
+import 'package:weatherapp/model/model.dart';
 import 'package:weatherapp/views/other_infos.dart';
 import 'utils/styles.dart';
 import 'views/hourly_previsions.dart';
 import 'views/previsions_week.dart';
-import 'views/saved_locations.dart';
 
 
 void main(){
@@ -58,7 +58,8 @@ class _MyAppState extends State<MyApp> {
     }
     return await Geolocator.getCurrentPosition();
   }
-
+/*
+OLD CODE
   // Listening for location updates
   void _liveLocation() {
     LocationSettings locationSettings = const LocationSettings(
@@ -76,7 +77,8 @@ class _MyAppState extends State<MyApp> {
         });
       });
   }
-
+*/
+WeatherModel ? weatherModel;
 @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -85,8 +87,11 @@ class _MyAppState extends State<MyApp> {
       theme: theme,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          title: const Text("WeathAir"),
+          backgroundColor: Colors.transparent,
+          title:  Text("WeathAir", style: TextStyle(
+            color: Styles.color7
+            ),
+          ),
           actions: [
             IconButton(
               icon: const Icon(Icons.search), 
@@ -110,6 +115,13 @@ class _MyAppState extends State<MyApp> {
                   style: TextStyle(fontSize: 20),
                   )
                   ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      print("call btn");
+                      weatherModel = await WeatherApiClient().request();
+                      print(weatherModel?.currentWeather);
+                    }, 
+                    child: const Text("Get Data")),
                 for(int i =0; i < 7; i++) //TODO : Include loop for saved locations in json or database maybe ?
                 Container(
                   padding: const EdgeInsets.only(left:25, right: 25),
@@ -141,7 +153,7 @@ class _MyAppState extends State<MyApp> {
                         Row(
                           //City name and temperature
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
+                          children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -156,6 +168,7 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ),
+                  /*
                   ElevatedButton(
                     onPressed: () {
                       _getcurrentLocation().then((value) {
@@ -169,6 +182,7 @@ class _MyAppState extends State<MyApp> {
                       }, 
                     child: const Text("Get Current Location"),
                     ),
+                    */
                    const PrevisionsWeek(), /// Previsions for the current week
                    const SizedBox(
                       height: 420,
