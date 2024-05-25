@@ -8,7 +8,6 @@ import 'utils/styles.dart';
 import 'views/hourly_previsions.dart';
 import 'views/previsions_week.dart';
 
-
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -23,7 +22,6 @@ void main(){
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -36,30 +34,6 @@ class _MyAppState extends State<MyApp> {
   late String lat; // Lattitude of the location
   late String long; // Longitude of the location
 
-  // Fectching current location
-  Future<Position> _getcurrentLocation() async {
-    // Checking location services is enabled or not
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled');
-  } 
-
-  // Checking location permissions of the application
-  LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error("Location permissions are denied");
-    }
-  }
-
-    if(permission == LocationPermission.deniedForever) {
-      return Future.error("Location permissions are permanently denied. Please allow them via the settings");
-    }
-    return await Geolocator.getCurrentPosition();
-  }
-
-WeatherModel ? weatherModel;
 @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -96,13 +70,6 @@ WeatherModel ? weatherModel;
                   style: TextStyle(fontSize: 20),
                   )
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      print("call btn");
-                      weatherModel = await WeatherApiClient().request();
-                      print(weatherModel?.currentWeather);
-                    }, 
-                    child: const Text("Get Data")),
                 for(int i =0; i < 7; i++) //TODO : Include loop for saved locations in json or database maybe ?
                 Container(
                   padding: const EdgeInsets.only(left:25, right: 25),
@@ -153,21 +120,6 @@ WeatherModel ? weatherModel;
                       ],
                     ),
                   ),
-                  /*
-                  ElevatedButton(
-                    onPressed: () {
-                      _getcurrentLocation().then((value) {
-                        lat = '${value.latitude}';
-                        long = '${value.longitude}';
-                        setState(() {
-                          locationName = 'Latitude : $lat, Longitude : $long';
-                        });
-                        _liveLocation();
-                      });
-                      }, 
-                    child: const Text("Get Current Location"),
-                    ),
-                    */
                    const PrevisionsWeek(), /// Previsions for the current week
                    const SizedBox(
                       height: 420,
