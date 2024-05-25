@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/client/client.dart';
 import 'package:weatherapp/utils/layout.dart';
 import '../utils/styles.dart';
+import 'package:weatherapp/client/client.dart';
+import 'package:weatherapp/model/model.dart';
 
 class PrevisionsWeek extends StatefulWidget {
   const PrevisionsWeek({super.key});
@@ -19,9 +22,9 @@ class PrevisionsWeekView extends State<PrevisionsWeek> {
       child: Container(
         margin: const EdgeInsets.all(15),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(15),
           decoration: const BoxDecoration(
-            color: Colors.red,
+            color: Color.fromARGB(255, 233, 242, 255),
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
           child: Column(
@@ -47,7 +50,7 @@ class PrevisionsWeekView extends State<PrevisionsWeek> {
                     Text("°F", style: Styles.previsions,),               
                   ],                  
                 ),
-              )               
+              ),
             ],              
           ),             
         ),

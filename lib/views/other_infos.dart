@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
+import '../utils/styles.dart';
 
 class OtherInfos extends StatefulWidget {
   const OtherInfos({super.key});
@@ -23,7 +24,7 @@ class OtherInfosState extends State<OtherInfos> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.pink,
+                color: Styles.miniBoxes,
                 borderRadius: BorderRadius.circular(20),
                 ),
                 child: const Column(
@@ -38,7 +39,7 @@ class OtherInfosState extends State<OtherInfos> {
               ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.purple,
+                color: Styles.miniBoxes,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Column(
@@ -52,7 +53,7 @@ class OtherInfosState extends State<OtherInfos> {
 
             Container(
               decoration: BoxDecoration(
-                color: Colors.lime,
+                color: Styles.miniBoxes,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Column(
@@ -66,7 +67,7 @@ class OtherInfosState extends State<OtherInfos> {
 
             Container(
               decoration: BoxDecoration(
-                color: Colors.amber,
+                color: Styles.miniBoxes,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Column(

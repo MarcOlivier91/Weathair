@@ -37,14 +37,14 @@ class HourlyPrevisionsView extends State<HourlyPrevisions> {
                   padding: const EdgeInsets.all(8),
                   margin: const EdgeInsets.only(right: 4),
                   decoration: BoxDecoration(
-                    color: Styles.color4,
+                    color: Styles.hourlyColumn,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
                     children: [
                       const Text("12:00", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
                       SvgPicture.asset("assets/sun-svgrepo-com.svg", width: 20, height: 20,),
-                      Text("XX°C", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
+                      const Text("XX°C", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))
                     ],
                   ),
                 );

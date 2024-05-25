@@ -58,26 +58,7 @@ class _MyAppState extends State<MyApp> {
     }
     return await Geolocator.getCurrentPosition();
   }
-/*
-OLD CODE
-  // Listening for location updates
-  void _liveLocation() {
-    LocationSettings locationSettings = const LocationSettings(
-      accuracy: LocationAccuracy.high, // High accuracy
-      distanceFilter: 100, // Will refresh every 100 meters
-    );
 
-    Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-      (Position position) { 
-        // Putting locations coordinates to string
-        lat = position.latitude.toString();
-        long = position.longitude.toString();
-        setState(() {
-          locationName = 'Latitude: $lat, Longitude: $long'; // Changing the content of the variable
-        });
-      });
-  }
-*/
 WeatherModel ? weatherModel;
 @override
   Widget build(BuildContext context) {
@@ -107,7 +88,7 @@ WeatherModel ? weatherModel;
         backgroundColor: Colors.white,
         drawer: Drawer(
           child: Container(
-            color: Colors.blueGrey[200],
+            color: Styles.sideBar,
             child: ListView(
               children: [                  
                 const DrawerHeader(                
@@ -146,15 +127,19 @@ WeatherModel ? weatherModel;
                 children: [
                   Container( // THIS IS THE CONTAINER FOR THE CURRENT WEATHER FOR THE CURRENT LOCATION AND HOURLY PREVISIONS
                     padding: const EdgeInsets.all(15),
+                    margin: const EdgeInsets.all(15),
                     height: 170,
-                    color: Colors.green,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 197, 220, 255),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
                     child: Column(
                       children: [
                         Row(
                           //City name and temperature
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,                   
                           children: [
-                            Column(
+                            Column(                          
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(locationName, style: Styles.primaryText),
